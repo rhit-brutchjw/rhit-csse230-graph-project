@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<data-set>
+	<record>
+		<Name>Brown County</Name>
+		<Latitude>39.11</Latitude>
+		<Longitude>-86.26</Longitude>
+	</record>
+	<record>
+		<Name>Chain O'Lakes</Name>
+		<Latitude>41.33</Latitude>
+		<Longitude>-85.38</Longitude>
+	</record>
+	<record>
+		<Name>Charlestown</Name>
+		<Latitude>38.43</Latitude>
+		<Longitude>-85.63</Longitude>
+	</record>
+	<record>
+		<Name>Clifty Falls</Name>
+		<Latitude>38.76</Latitude>
+		<Longitude>-85.42</Longitude>
+	</record>
+	<record>
+		<Name>Falls of the Ohio</Name>
+		<Latitude>38.277</Latitude>
+		<Longitude>-85.763</Longitude>
+	</record>
+	<record>
+		<Name>Fort Harrison</Name>
+		<Latitude>39.87</Latitude>
+		<Longitude>-86.01</Longitude>
+	</record>
+	<record>
+		<Name>Harmonie</Name>
+		<Latitude>38.06</Latitude>
+		<Longitude>-87.95</Longitude>
+	</record>
+	<record>
+		<Name>Indiana Dunes</Name>
+		<Latitude>41.66</Latitude>
+		<Longitude>-87.04</Longitude>
+	</record>
+	<record>
+		<Name>Lincoln</Name>
+		<Latitude>38.1</Latitude>
+		<Longitude>-87</Longitude>
+	</record>
+	<record>
+		<Name>McCormick's Creek</Name>
+		<Latitude>39.29</Latitude>
+		<Longitude>-86.73</Longitude>
+	</record>
+	<record>
+		<Name>Mounds</Name>
+		<Latitude>40.1</Latitude>
+		<Longitude>-85.62</Longitude>
+	</record>
+	<record>
+		<Name>O'Bannon Woods</Name>
+		<Latitude>38.18</Latitude>
+		<Longitude>-86.29</Longitude>
+	</record>
+	<record>
+		<Name>Ouabache</Name>
+		<Latitude>40.72</Latitude>
+		<Longitude>-85.11</Longitude>
+	</record>
+	<record>
+		<Name>Pokagon</Name>
+		<Latitude>41.71</Latitude>
+		<Longitude>-85.02</Longitude>
+	</record>
+	<record>
+		<Name>Potato Creek</Name>
+		<Latitude>41.55</Latitude>
+		<Longitude>-86.34</Longitude>
+	</record>
+	<record>
+		<Name>Prophetstown</Name>
+		<Latitude>40.5</Latitude>
+		<Longitude>-86.83</Longitude>
+	</record>
+	<record>
+		<Name>Shades</Name>
+		<Latitude>39.93</Latitude>
+		<Longitude>-87.08</Longitude>
+	</record>
+	<record>
+		<Name>Shakamak</Name>
+		<Latitude>39.17</Latitude>
+		<Longitude>-87.24</Longitude>
+	</record>
+	<record>
+		<Name>Spring Mill</Name>
+		<Latitude>38.73</Latitude>
+		<Longitude>-86.42</Longitude>
+	</record>
+	<record>
+		<Name>Summit Lake</Name>
+		<Latitude>40.03</Latitude>
+		<Longitude>-85.3</Longitude>
+	</record>
+	<record>
+		<Name>Tippecanoe Rier</Name>
+		<Latitude>41.15</Latitude>
+		<Longitude>-86.6</Longitude>
+	</record>
+	<record>
+		<Name>Turkey Run</Name>
+		<Latitude>39.88</Latitude>
+		<Longitude>-87.21</Longitude>
+	</record>
+	<record>
+		<Name>Versailles</Name>
+		<Latitude>39.08</Latitude>
+		<Longitude>-85.23</Longitude>
+	</record>
+	<record>
+		<Name>White River</Name>
+		<Latitude>39.77</Latitude>
+		<Longitude>-86.17</Longitude>
+	</record>
+	<record>
+		<Name>Whitewater Memorial</Name>
+		<Latitude>39.61</Latitude>
+		<Longitude>-84.97</Longitude>
+	</record>
+</data-set>

@@ -16,7 +16,10 @@ public class MapNode {
 			neighbors.add(neighbor);
 		}
 	}
-	
+	public MapNode(int x, int y) {
+		this.xPos=x;
+		this.yPos=y;
+	}
 	public int getDist() {
 		return distToStart;
 	}
@@ -43,5 +46,8 @@ public class MapNode {
 	
 	public double calcTime(MapNode neighbor) {
 		return neighborToRoad.get(neighbor).getTime();
+	}
+	public String toString() {
+		return "xPos = " + this.xPos + "; yPos = " +yPos;
 	}
 }
