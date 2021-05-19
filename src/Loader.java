@@ -15,7 +15,7 @@ public class Loader {
 	List<Double> ewPos = new ArrayList<Double>();
 	List<Double> nsPos = new ArrayList<Double>();
 	ArrayList<String> names = new ArrayList<String>();
-	//Indiana boundries
+	//Indiana boundaries
 	Double leftBound = -88.3;
 	Double rightBound = -84.6;
 	Double topBound = 42.;
@@ -47,6 +47,7 @@ public class Loader {
 		}
 		return locations;
 	}
+	//TODO create roadNode method
 	
 	//XML Loading Code
 	public void populateData(String fileName) {
@@ -73,14 +74,34 @@ public class Loader {
 			e.printStackTrace();
 		}
 	}
-	public void autoGenNeighbours() {
-		
+	public void autoGenNeighbours(Double radius, HashMap<String,MapNode> map) {
+		Double rad2 = Math.pow(radius, 2);
+		for (int k = names.size()-1; k>0;--k) {
+//			System.out.println(names.get(k));
+			for (int j = names.size() - k -1 ; j > 0;--j) {
+				double xCheck = Math.pow(ewPos.get(j)-ewPos.get(k),2);
+				double yCheck = Math.pow(nsPos.get(j)-nsPos.get(k),2);
+//				System.out.println(xCheck);
+//				System.out.println(yCheck);
+				if(rad2 > xCheck + yCheck && j !=k) {
+//					System.out.println("Group " + k);
+//					System.out.println(names.get(k));
+//					System.out.println(names.get(j));
+					map.get(names.get(k)).addNeighbour(map.get(names.get(j)));
+					map.get(names.get(j)).addNeighbour(map.get(names.get(k)));
+
+				}
+			}
+		}
 	}
 	
 //TEST CODE FOR THIS CLASS
 public static void main(String args[]) {
 	Loader Load = new Loader(1000,1000);
 	Load.populateData("StateParkList");
-	System.out.println(Load.createLocations().get("Falls of the Ohio").toString());
+	HashMap<String,MapNode> temp =Load.createLocations();
+//	System.out.println(temp.get("Falls of the Ohio").toString());
+	Load.autoGenNeighbours(1., temp);
+//	System.out.println(temp.get("Charlestown").getNeighbors().toString());
 	}
 }

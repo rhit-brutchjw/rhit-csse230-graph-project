@@ -5,7 +5,7 @@ public class MapNode {
 	private int xPos;
 	private int yPos;
 	private int distToStart;
-	private HashSet<MapNode> neighbors;
+	private HashSet<MapNode> neighbors = new HashSet<MapNode>();
 	private HashMap<MapNode, RoadPath> neighborToRoad;
 	
 	public MapNode(int x, int y, HashMap<MapNode, RoadPath> neighborToRoad) {
@@ -48,6 +48,9 @@ public class MapNode {
 		return neighborToRoad.get(neighbor).getTime();
 	}
 	public String toString() {
-		return "xPos = " + this.xPos + "; yPos = " +yPos;
+		return "xPos = " + this.xPos + "; yPos = " +yPos + " Neighbours: " + !this.neighbors.isEmpty();
+	}
+	public void addNeighbour(MapNode toAdd) {
+		this.neighbors.add(toAdd);
 	}
 }
