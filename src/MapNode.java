@@ -8,14 +8,6 @@ public class MapNode {
 	private HashSet<MapNode> neighbors = new HashSet<MapNode>();
 	private HashMap<MapNode, RoadPath> neighborToRoad;
 	
-	public MapNode(int x, int y, HashMap<MapNode, RoadPath> neighborToRoad) {
-		xPos = x;
-		yPos = y;
-		this.neighborToRoad = neighborToRoad;
-		for(MapNode neighbor : neighborToRoad.keySet()) {
-			neighbors.add(neighbor);
-		}
-	}
 	public MapNode(int x, int y) {
 		this.xPos=x;
 		this.yPos=y;
