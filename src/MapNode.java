@@ -20,6 +20,14 @@ public class MapNode {
 		return distToStart;
 	}
 
+	public int getx() {
+		return this.xPos;
+	}
+
+	public int gety() {
+		return this.yPos;
+	}
+
 	public void setDist(int newDist) {
 		distToStart = newDist;
 	}
