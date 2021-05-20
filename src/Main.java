@@ -8,6 +8,7 @@ public class Main {
 		Load.populateData("StateParkList");
 		HashMap<String, MapNode> map = Load.createLocations();
 		Load.autoGenNeighbours(1.0, map);
+<<<<<<< HEAD
 		for(MapNode mp : map.values()) {
 			System.out.println(mp.toString() + " with neighbors: " + mp.getNeighbors().toString());
 		}
@@ -16,5 +17,22 @@ public class Main {
 		MapNode go = map.get("Turkey Run");
 		LinkedList<MapNode> result = search.search(st, go);
 		System.out.println(result);
+=======
+//		System.out.println("X: " + map.get("Indiana Dunes").getx() + "Y: " + map.get("Indiana Dunes").gety());
+		System.out.println("X: " + map.get("Turkey Run").getx() + "Y: " + map.get("Turkey Run").gety());
+		System.out.println("X: " + map.get("Shades").getx() + "Y: " + map.get("Shades").gety());
+		
+		
+		
+//		for(MapNode mp : map.values()) {
+//			System.out.println(mp.toString() + " with neighbors: " + mp.getNeighbors().toString());
+//		}
+		
+//		AStarSearch search = new AStarSearch(map);
+//		MapNode st = map.get("Indiana Dunes");
+//		MapNode go = map.get("Brown County");
+//		LinkedList<MapNode> result = search.search(st, go);
+//		System.out.println(result);
+>>>>>>> 439475761e2f92d076f01729e3427f52ca5a6c2b
 	}
 }
