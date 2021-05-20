@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<data-set>
+	<record>
+		<Name>Name</Name>
+		<X>X</X>
+		<Y>Y</Y>
+		<one>one</one>
+		<two>two</two>
+		<three>three</three>
+		<four>four</four>
+	</record>
+</data-set>

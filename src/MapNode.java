@@ -53,4 +53,10 @@ public class MapNode {
 	public void addNeighbour(MapNode toAdd) {
 		this.neighbors.add(toAdd);
 	}
+	public void calcAllDist() {
+		for(MapNode n : this.neighbors) {
+			int dist = (int) (Math.pow(this.xPos-n.xPos,2) + Math.pow(this.yPos-n.yPos, 2));
+			neighborToRoad.put(this,new RoadPath("Temp",50,dist));
+		}
+	}
 }
