@@ -25,11 +25,10 @@ public class AStarSearch {
 		// sets up the map of distances from start to the goal
 		// initializes the distances as null to start
 		HashMap<MapNode, Integer> distances = initDist();
-		
+
 		// creates the priority queue used in the search algorithm
 		PriorityQueue<MapNode> queue = initQueue();
-		
-		
+
 		// sets the starting nodes distance as 0
 		start.setDist(0);
 		// updates the distance from the start to the goal
@@ -57,7 +56,8 @@ public class AStarSearch {
 						int straightDist = n.dist(goal);
 						// calculates distance from the current node to the neighbor based on the road
 						int neighborDistance = current.calcDist(n);
-						// calculates the total distance from start to finish for use in the priority queue
+						// calculates the total distance from start to finish for use in the priority
+						// queue
 						int totalDistance = current.getDist() + neighborDistance + straightDist;
 						// if the calculated total distance is less than the current total distance it:
 						if (distances.get(n) == null || totalDistance < distances.get(n)) {
