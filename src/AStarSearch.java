@@ -77,6 +77,30 @@ public class AStarSearch {
 		}
 		return null;
 	}
+	
+	public int getFinalDist(LinkedList<MapNode> result) {
+		int sum = 0;
+		for(int i = 0; i < result.size() - 1; i++) {
+			MapNode m1 = result.get(i);
+			MapNode m2 = result.get(i+1);
+			sum += haversineFormula(m1.getlat(), m1.getlon(), m2.getlat(), m2.getlon());
+		}
+		return sum;
+	}
+	
+	private int haversineFormula(double lat1, double lon1, double lat2, double lon2) {
+		int R = 6371000;
+		double phi1 = lat1 * Math.PI / 180;
+		double phi2 = lat2 * Math.PI / 180;
+		double deltaPhi = (lat2-lat1) * Math.PI / 180;
+		double deltaLambda = (lon2 - lon1) * Math.PI / 180;
+		double a = Math.sin(deltaPhi/2) * Math.sin(deltaPhi/2) + Math.cos(phi1) * Math.cos(phi2) * Math.sin(deltaLambda/2) * Math.sin(deltaLambda/2);
+		double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+		double d = R * c;
+		int miles = (int) Math.round(d / 1609.34);
+		return miles;
+		
+	}
 
 	private LinkedList<MapNode> createPath(MapNode startNode, MapNode goalNode, HashMap<MapNode, MapNode> parents) {
 		LinkedList<MapNode> bestPath = new LinkedList<MapNode>();

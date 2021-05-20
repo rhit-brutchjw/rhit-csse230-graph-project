@@ -5,19 +5,31 @@ public class MapNode {
 	private int xPos;
 	private int yPos;
 	private int distToStart;
+	private double latitude;
+	private double longitude;
 	public String name;
 	private HashSet<MapNode> neighbors = new HashSet<MapNode>();
 	private HashMap<MapNode, RoadPath> neighborToRoad;
 
-	public MapNode(int x, int y, String name) {
+	public MapNode(int x, int y, String name, double lon, double lat) {
 		this.xPos = x;
 		this.yPos = y;
 		this.name = name;
 		neighborToRoad = new HashMap<MapNode, RoadPath>();
+		this.latitude = lat;
+		this.longitude = lon;
 	}
 
 	public int getDist() {
 		return distToStart;
+	}
+	
+	public double getlon() {
+		return this.longitude;
+	}
+
+	public double getlat() {
+		return this.latitude;
 	}
 
 	public int getx() {

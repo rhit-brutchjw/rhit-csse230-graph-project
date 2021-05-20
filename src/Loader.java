@@ -46,7 +46,7 @@ public class Loader {
 		// Generates a hashmap of MapNodes has each locations name as a key.
 		HashMap<String, MapNode> locations = new HashMap<String, MapNode>();
 		for (int k = 0; k < names.size(); ++k) {
-			locations.put(names.get(k), new MapNode(long2x(ewPos.get(k)), lat2y(nsPos.get(k)) , names.get(k)));
+			locations.put(names.get(k), new MapNode(long2x(ewPos.get(k)), lat2y(nsPos.get(k)) , names.get(k), ewPos.get(k), nsPos.get(k)));
 		}
 		return locations;
 	}
