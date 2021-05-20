@@ -92,6 +92,7 @@ public class Loader {
 
 				}
 			}
+			map.get(names.get(k)).calcAllDist();
 		}
 	}
 	
