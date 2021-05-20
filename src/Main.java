@@ -11,10 +11,10 @@ public class Main {
 		for(MapNode mp : map.values()) {
 			System.out.println(mp.toString() + " with neighbors: " + mp.getNeighbors().toString());
 		}
-//		AStarSearch search = new AStarSearch(map);
-//		MapNode st = map.get("Indiana Dunes");
-//		MapNode go = map.get("Brown County");
-//		LinkedList<MapNode> result = search.search(st, go);
-//		System.out.println(result);
+		AStarSearch search = new AStarSearch(map);
+		MapNode st = map.get("Indiana Dunes");
+		MapNode go = map.get("Turkey Run");
+		LinkedList<MapNode> result = search.search(st, go);
+		System.out.println(result);
 	}
 }
