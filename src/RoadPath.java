@@ -1,11 +1,13 @@
 
 public class RoadPath {
-	private String roadName;
+	private MapNode to;
+	private MapNode from;
 	private int MPH;
 	private int length;
 	
-	public RoadPath(String roadName, int MPH, int length) {
-		this.roadName = roadName;
+	public RoadPath(MapNode to, MapNode from,int MPH, int length) {
+		this.to = to;
+		this.from = from;
 		this.MPH = MPH;
 		this.length = length;
 	}
@@ -18,8 +20,11 @@ public class RoadPath {
 		return length / MPH;
 	}
 	
-	public String getRoadName() {
-		return roadName;
+	public MapNode getTo() {
+		return to;
 	}
 	
+	public MapNode getFrom() {
+		return from;
+	}
 }

@@ -5,11 +5,12 @@ public class MapNode {
 	private int xPos;
 	private int yPos;
 	private int distToStart;
+	private int timeToStart;
 	private double latitude;
 	private double longitude;
 	public String name;
 	private HashSet<MapNode> neighbors = new HashSet<MapNode>();
-	private HashMap<MapNode, RoadPath> neighborToRoad;
+	public HashMap<MapNode, RoadPath> neighborToRoad;
 
 	public MapNode(int x, int y, String name, double lon, double lat) {
 		this.xPos = x;
@@ -22,6 +23,10 @@ public class MapNode {
 
 	public int getDist() {
 		return distToStart;
+	}
+	
+	public int getTime() {
+		return timeToStart;
 	}
 	
 	public double getlon() {
@@ -43,6 +48,10 @@ public class MapNode {
 	public void setDist(int newDist) {
 		distToStart = newDist;
 	}
+	
+	public void setTime(int newTime) {
+		timeToStart = newTime;
+	}
 
 	public HashSet<MapNode> getNeighbors() {
 		return neighbors;
@@ -60,7 +69,7 @@ public class MapNode {
 		return neighborToRoad.get(neighbor).getLength();
 	}
 
-	public double calcTime(MapNode neighbor) {
+	public int calcTime(MapNode neighbor) {
 		return neighborToRoad.get(neighbor).getTime();
 	}
 
@@ -75,7 +84,7 @@ public class MapNode {
 	public void calcAllDist() {
 		for (MapNode n : this.neighbors) {
 			int dist = this.dist(n);
-			neighborToRoad.put(n, new RoadPath("Temp", 50, dist));
+			neighborToRoad.put(n, new RoadPath(this, n, 50, dist));
 		}
 	}
 }
