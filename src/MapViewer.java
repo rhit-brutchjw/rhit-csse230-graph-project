@@ -18,6 +18,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
@@ -39,8 +40,8 @@ public class MapViewer extends JFrame implements ActionListener {
 	public static final int FRAME_HEIGHT = 1080;
 	public JButton start = new JButton("Start");
 
-	public JLabel dest1 = new JLabel("Start");
-	public JLabel dest2 = new JLabel("Finish");
+	public JLabel dest1 = new JLabel("Start: ");
+	public JLabel dest2 = new JLabel("Finish: ");
 	public JButton findR = new JButton();
 	public JButton reset = new JButton();
 	public JButton zoomin = new JButton();
@@ -62,8 +63,10 @@ public class MapViewer extends JFrame implements ActionListener {
 
 	BufferedImage bufI;
 
-	private String[] selectionOptions = { "Time", "Distance" };
+	private String[] selectionOptions = { "Distance", "Time" };
 	public JComboBox<String> selection = new JComboBox<>(selectionOptions);
+	
+	HashMap<String, MapNode> map;
 
 	public MapViewer() {
 //	
@@ -83,7 +86,8 @@ public class MapViewer extends JFrame implements ActionListener {
 		};
 
 		Load.populateData("StateParkList");
-		HashMap<String, MapNode> map = Load.createLocations();
+		map = Load.createLocations();
+		Load.autoGenNeighbours(1.0, map);
 
 		for (String key : map.keySet()) {
 			firstDestination.addItem(key);
@@ -99,28 +103,41 @@ public class MapViewer extends JFrame implements ActionListener {
 		mapPanel.setPreferredSize(mp);
 
 		optionsPanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 800, 0));
-		optionsPanel.setLayout(new GridLayout(0, 2, 10, 10));
+		optionsPanel.setLayout(new GridLayout(0, 2, 20, 20));
 
 		mapPanel.setLayout(new BorderLayout());
 		mapPanel.add(mapc);
 
 		findR.setText("Find Route");
 		reset.setText("Reset");
-		zoomin.setText("Zoom+");
-		zoomout.setText("Zoom-");
+		
 
+		optionsPanel.add(findR);
+		optionsPanel.add(reset);
 		optionsPanel.add(dest1);
 		optionsPanel.add(firstDestination);
 		optionsPanel.add(dest2);
 		optionsPanel.add(secondDestination);
-		optionsPanel.add(findR);
-		optionsPanel.add(reset);
-		optionsPanel.add(zoomin);
-		optionsPanel.add(zoomout);
+		
 		optionsPanel.add(dist);
 		optionsPanel.add(time);
 
 		findR.addActionListener(this);
+		reset.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dist.setText("Distance: ");
+				time.setText("Time: ");
+				dest1.setText("Start: ");
+				dest2.setText("End: ");
+				mapc.setResult(null);
+				mainGUI.repaint();
+				
+			}
+			
+		});
+		
 
 		mainGUI.setPreferredSize(new Dimension(FRAME_WIDTH, FRAME_HEIGHT));
 		mainGUI.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -142,14 +159,33 @@ public class MapViewer extends JFrame implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		int selec1 = firstDestination.getSelectedIndex();
-		int selec2 = secondDestination.getSelectedIndex();
+		mapc.setResult(null);
+		mainGUI.repaint();
+		
+		
+		String Start = firstDestination.getSelectedItem().toString();
+		String End = secondDestination.getSelectedItem().toString();
+		AStarSearch search = new AStarSearch(map);
+		MapNode st = map.get(Start);
+		
+		MapNode go = map.get(End);
+		
+		LinkedList<MapNode> result = search.search(st, go);
+		
+		int miles = search.getFinalDist(result);
+		double hours = search.getFinalDist(result)/60.0;
+		
+		double scale = Math.pow(10, 2);
+		hours = Math.round(hours*scale) / scale;
+		
+		mapc.setResult(result);
+		mainGUI.repaint();
+		dest1.setText("Start: " + Start);
+		dest2.setText("End: " + End);
+		dist.setText("Distance: " + miles + " miles");
+//		time.setText("Time: "+ hours + " hours" );
 
-		String first = locs.get(selec1);
-		String second = locs.get(selec2);
-		dist.setText("Distance: " + first);
-		time.setText("Time: " + second);
-
+		
 	}
 
 	public static void main(String args[]) {
