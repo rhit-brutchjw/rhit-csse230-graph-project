@@ -77,14 +77,14 @@ public class AStarSearch {
 		}
 		return null;
 	}
-	
+
 	public LinkedList<MapNode> searchTime(MapNode start, MapNode goal) {
 		HashMap<MapNode, MapNode> parents = new HashMap<MapNode, MapNode>();
 		HashSet<MapNode> visited = new HashSet<MapNode>();
-		HashMap<MapNode, Integer> times = initDist();
+		HashMap<MapNode, Double> times = initTime();
 		PriorityQueue<MapNode> queue = initQueue();
 		start.setTime(0);
-		times.put(start, 0);
+		times.put(start, 0.0);
 		queue.add(start);
 		MapNode current = null;
 		while (!queue.isEmpty()) {
@@ -97,9 +97,9 @@ public class AStarSearch {
 				HashSet<MapNode> neighbors = current.getNeighbors();
 				for (MapNode n : neighbors) {
 					if (!visited.contains(n)) {
-						int straightTime = n.time(goal);
-						int neighborTime = current.calcTime(n);
-						int totalTime = current.getTime() + neighborTime + straightTime;
+						double straightTime = n.time(goal);
+						double neighborTime = current.calcTime(n);
+						double totalTime = current.getTime() + neighborTime + straightTime;
 						if (times.get(n) == null || totalTime < times.get(n)) {
 							times.put(n, totalTime);
 							n.setTime(totalTime);
@@ -112,41 +112,42 @@ public class AStarSearch {
 		}
 		return null;
 	}
-	
+
 	public int getFinalDist(LinkedList<MapNode> result) {
 		int d = 0;
-		for(int i = 0; i < result.size() - 1; i++) {
+		for (int i = 0; i < result.size() - 1; i++) {
 			MapNode m1 = result.get(i);
-			MapNode m2 = result.get(i+1);
+			MapNode m2 = result.get(i + 1);
 			d += haversineFormula(m1.getlat(), m1.getlon(), m2.getlat(), m2.getlon());
 		}
 		return d;
 	}
-	
-	public int getFinalTime(LinkedList<MapNode> result) {
-		int t = 0;
-		for(int i = 0; i < result.size() - 1; i++) {
+
+	public double getFinalTime(LinkedList<MapNode> result) {
+		double t = 0;
+		for (int i = 0; i < result.size() - 1; i++) {
 			MapNode m1 = result.get(i);
-			MapNode m2 = result.get(i+1);
-			int d = haversineFormula(m1.getlat(), m1.getlon(), m2.getlat(), m2.getlon());
-			int r = m1.neighborToRoad.get(m2).getTime();
-			t += d/r;
+			MapNode m2 = result.get(i + 1);
+			double d = haversineFormula(m1.getlat(), m1.getlon(), m2.getlat(), m2.getlon());
+			double r = m1.neighborToRoad.get(m2).getMPH();
+			t += (d / r);
 		}
 		return t;
 	}
-	
+
 	private int haversineFormula(double lat1, double lon1, double lat2, double lon2) {
 		int R = 6371000;
 		double phi1 = lat1 * Math.PI / 180;
 		double phi2 = lat2 * Math.PI / 180;
-		double deltaPhi = (lat2-lat1) * Math.PI / 180;
+		double deltaPhi = (lat2 - lat1) * Math.PI / 180;
 		double deltaLambda = (lon2 - lon1) * Math.PI / 180;
-		double a = Math.sin(deltaPhi/2) * Math.sin(deltaPhi/2) + Math.cos(phi1) * Math.cos(phi2) * Math.sin(deltaLambda/2) * Math.sin(deltaLambda/2);
-		double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+		double a = Math.sin(deltaPhi / 2) * Math.sin(deltaPhi / 2)
+				+ Math.cos(phi1) * Math.cos(phi2) * Math.sin(deltaLambda / 2) * Math.sin(deltaLambda / 2);
+		double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 		double d = R * c;
 		int miles = (int) Math.round(d / 1609.34);
 		return miles;
-		
+
 	}
 
 	private LinkedList<MapNode> createPath(MapNode startNode, MapNode goalNode, HashMap<MapNode, MapNode> parents) {
@@ -183,4 +184,15 @@ public class AStarSearch {
 		}
 		return distances;
 	}
+	
+	private HashMap<MapNode, Double> initTime() {
+		HashMap<MapNode, Double> times = new HashMap<MapNode, Double>();
+		Iterator<MapNode> iter = currentMap.values().iterator();
+		while (iter.hasNext()) {
+			MapNode node = iter.next();
+			times.put(node, null);
+		}
+		return times;
+	}
+	
 }

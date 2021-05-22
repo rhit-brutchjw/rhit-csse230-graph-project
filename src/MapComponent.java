@@ -27,7 +27,7 @@ public class MapComponent extends JComponent {
 		Graphics2D g2 = (Graphics2D) g;
 
 		doDrawing(g2);
-		if(path != null) {
+		if (path != null) {
 			doLine(g2, path);
 		}
 	}
@@ -53,23 +53,21 @@ public class MapComponent extends JComponent {
 		}
 
 	}
-	
 
 	public void doLine(Graphics2D g, LinkedList<MapNode> result) {
 		g.setStroke(new BasicStroke(3));
 		g.setColor(new Color(255, 69, 0));
-		for(int i = 0; i < result.size() - 1; i++) {
+		for (int i = 0; i < result.size() - 1; i++) {
 			MapNode m1 = result.get(i);
-			MapNode m2 = result.get(i+1);
-			g.drawLine(m1.getx() + 37, -1*m1.gety() -5, m2.getx() + 37, -1*m2.gety() -5);
-			
+			MapNode m2 = result.get(i + 1);
+			g.drawLine(m1.getx() + 37, -1 * m1.gety() - 5, m2.getx() + 37, -1 * m2.gety() - 5);
+
 		}
 	}
-	
-	
+
 	public void setResult(LinkedList<MapNode> result) {
 		this.path = result;
-		
+
 	}
 
 }

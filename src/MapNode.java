@@ -1,11 +1,12 @@
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Random;
 
 public class MapNode {
 	private int xPos;
 	private int yPos;
 	private int distToStart;
-	private int timeToStart;
+	private double timeToStart;
 	private double latitude;
 	private double longitude;
 	public String name;
@@ -24,11 +25,11 @@ public class MapNode {
 	public int getDist() {
 		return distToStart;
 	}
-	
-	public int getTime() {
+
+	public double getTime() {
 		return timeToStart;
 	}
-	
+
 	public double getlon() {
 		return this.longitude;
 	}
@@ -48,9 +49,9 @@ public class MapNode {
 	public void setDist(int newDist) {
 		distToStart = newDist;
 	}
-	
-	public void setTime(int newTime) {
-		timeToStart = newTime;
+
+	public void setTime(double totalTime) {
+		timeToStart = totalTime;
 	}
 
 	public HashSet<MapNode> getNeighbors() {
@@ -69,7 +70,7 @@ public class MapNode {
 		return neighborToRoad.get(neighbor).getLength();
 	}
 
-	public int calcTime(MapNode neighbor) {
+	public double calcTime(MapNode neighbor) {
 		return neighborToRoad.get(neighbor).getTime();
 	}
 
@@ -84,7 +85,8 @@ public class MapNode {
 	public void calcAllDist() {
 		for (MapNode n : this.neighbors) {
 			int dist = this.dist(n);
-			neighborToRoad.put(n, new RoadPath(this, n, 50, dist));
+			Random r = new Random();
+			neighborToRoad.put(n, new RoadPath(this, n, 60.0, dist));
 		}
 	}
 }
