@@ -1,6 +1,5 @@
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Random;
 
 public class MapNode {
 	private int xPos;
@@ -59,7 +58,7 @@ public class MapNode {
 	}
 
 	public int dist(MapNode g) {
-		return (int) Math.abs(Math.round(Math.sqrt(Math.pow(g.xPos - xPos, 2) + Math.pow(g.yPos - yPos, 2))));
+		return haversineFormula(g.latitude, g.longitude);
 	}
 
 	public int time(MapNode g) {
@@ -82,11 +81,18 @@ public class MapNode {
 		this.neighbors.add(toAdd);
 	}
 
-	public void calcAllDist() {
-		for (MapNode n : this.neighbors) {
-			int dist = this.dist(n);
-			Random r = new Random();
-			neighborToRoad.put(n, new RoadPath(this, n, 60.0, dist));
-		}
+	private int haversineFormula(double lat2, double lon2) {
+		int R = 6371000;
+		double phi1 = this.latitude * Math.PI / 180;
+		double phi2 = lat2 * Math.PI / 180;
+		double deltaPhi = (lat2 - this.latitude) * Math.PI / 180;
+		double deltaLambda = (lon2 - this.longitude) * Math.PI / 180;
+		double a = Math.sin(deltaPhi / 2) * Math.sin(deltaPhi / 2)
+				+ Math.cos(phi1) * Math.cos(phi2) * Math.sin(deltaLambda / 2) * Math.sin(deltaLambda / 2);
+		double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+		double d = R * c;
+		int miles = (int) Math.round(d / 1609.34);
+		return miles;
+
 	}
 }

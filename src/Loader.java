@@ -51,7 +51,6 @@ public class Loader {
 		}
 		return locations;
 	}
-	// TODO create roadNode method
 
 	// XML Loading Code
 	public void populateData(String fileName) {
@@ -63,17 +62,12 @@ public class Loader {
 			NodeList nList = XMLTable.getElementsByTagName("Name");
 			NodeList latList = XMLTable.getElementsByTagName("Latitude");
 			NodeList longList = XMLTable.getElementsByTagName("Longitude");
-			// print statements to check if each list has the right data
-//		System.out.println(nList.item(0).getTextContent());
-//		System.out.println(latList.item(0).getTextContent());
-//		System.out.println(longList.item(0).getTextContent());
 			// actually creating arraylists
 			for (int k = 0; k < nList.getLength(); ++k) {
 				this.names.add(nList.item(k).getTextContent());
 				this.ewPos.add(Double.parseDouble(longList.item(k).getTextContent()));
 				this.nsPos.add(Double.parseDouble(latList.item(k).getTextContent()));
 			}
-//			System.out.println(this.names.toString());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -82,32 +76,39 @@ public class Loader {
 	public void autoGenNeighbours(Double radius, HashMap<String, MapNode> map) {
 		Double rad2 = Math.pow(radius, 2);
 		for (int k = names.size() - 1; k >= 0; --k) {
-//			System.out.println(names.get(k));
 			for (int j = names.size() - 1; j >= 0; --j) {
 				double xCheck = Math.pow(ewPos.get(j) - ewPos.get(k), 2);
 				double yCheck = Math.pow(nsPos.get(j) - nsPos.get(k), 2);
-//				System.out.println(xCheck);
-//				System.out.println(yCheck);
 				if (rad2 > xCheck + yCheck && j != k) {
-//					System.out.println("Group " + k);
-//					System.out.println(names.get(k));
-//					System.out.println(names.get(j));
 					map.get(names.get(k)).addNeighbour(map.get(names.get(j)));
 					map.get(names.get(j)).addNeighbour(map.get(names.get(k)));
 
 				}
 			}
-			map.get(names.get(k)).calcAllDist();
+		}
+		generateRoadPaths(map);
+	}
+	
+	public void generateRoadPaths(HashMap<String, MapNode> map) {
+		try {
+			DocumentBuilderFactory fact = DocumentBuilderFactory.newInstance();
+			DocumentBuilder bob = fact.newDocumentBuilder();
+			Document XMLTable = bob.parse(new File("RoadData.xml"));
+			XMLTable.getDocumentElement().normalize();
+			NodeList toList = XMLTable.getElementsByTagName("to");
+			NodeList fromList = XMLTable.getElementsByTagName("from");
+			NodeList MPHList = XMLTable.getElementsByTagName("MPH");
+			NodeList lengthList = XMLTable.getElementsByTagName("length");
+			for(int i = 0; i < toList.getLength(); i++) {
+				double MPH = Double.parseDouble(MPHList.item(i).getTextContent());
+				int length = Integer.parseInt(lengthList.item(i).getTextContent());
+				MapNode to = map.get(toList.item(i).getTextContent());
+				MapNode from = map.get(fromList.item(i).getTextContent());
+				to.neighborToRoad.put(from, new RoadPath(to, from, MPH, length));
+				from.neighborToRoad.put(to, new RoadPath(from, to, MPH, length));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
-
-//TEST CODE FOR THIS CLASS
-//	public static void main(String args[]) {
-//		Loader Load = new Loader(1000, 1000);
-//		Load.populateData("StateParkList");
-//		HashMap<String, MapNode> temp = Load.createLocations();
-////	System.out.println(temp.get("Falls of the Ohio").toString());
-//		Load.autoGenNeighbours(1., temp);
-////	System.out.println(temp.get("Charlestown").getNeighbors().toString());
-//	}
 }

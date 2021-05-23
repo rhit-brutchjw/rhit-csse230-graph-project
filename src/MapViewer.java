@@ -151,6 +151,8 @@ public class MapViewer extends JFrame implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
+		dist.setText("Distance: ");
+		time.setText("Time: ");
 		mapc.setResult(null);
 		mainGUI.repaint();
 
@@ -167,12 +169,14 @@ public class MapViewer extends JFrame implements ActionListener {
 			result = search.search(st, go);
 			int miles = search.getFinalDist(result);
 			dist.setText("Distance: " + miles + " miles");
-		} else {
+		} else if (selection.getSelectedItem().toString().equals("Time")) {
 			result = search.searchTime(st, go);
 			double hours = search.getFinalTime(result);
 			double scale = Math.pow(10, 2);
 			hours = Math.round(hours * scale) / scale;
 			time.setText("Time: " + hours + " hours");
+		} else {
+			result = null;
 		}
 		mapc.setResult(result);
 		mainGUI.repaint();

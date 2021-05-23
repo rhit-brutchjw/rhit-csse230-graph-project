@@ -15,10 +15,6 @@ public class RoadPath {
 	public int getLength() {
 		return length;
 	}
-	
-	public double getMPH() {
-		return MPH;
-	}
 
 	public double getTime() {
 		return length / MPH;

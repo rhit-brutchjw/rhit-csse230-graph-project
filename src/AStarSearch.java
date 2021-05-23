@@ -3,6 +3,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.PriorityQueue;
+import java.util.ArrayList;
 import java.util.Comparator;
 
 /**
@@ -46,6 +47,9 @@ public class AStarSearch {
 				visited.add(current);
 				// if the goal is found a path is recreated based on the parent link
 				if (current.equals(goal)) {
+					for (MapNode m : currentMap.values()) {
+						m.setDist(0);
+					}
 					return createPath(start, goal, parents);
 				}
 				HashSet<MapNode> neighbors = current.getNeighbors();
@@ -83,7 +87,7 @@ public class AStarSearch {
 		HashSet<MapNode> visited = new HashSet<MapNode>();
 		HashMap<MapNode, Double> times = initTime();
 		PriorityQueue<MapNode> queue = initQueue();
-		start.setTime(0);
+		start.setTime(0.0);
 		times.put(start, 0.0);
 		queue.add(start);
 		MapNode current = null;
@@ -92,6 +96,9 @@ public class AStarSearch {
 			if (!visited.contains(current)) {
 				visited.add(current);
 				if (current.equals(goal)) {
+					for (MapNode m : currentMap.values()) {
+						m.setTime(0.0);
+					}
 					return createPath(start, goal, parents);
 				}
 				HashSet<MapNode> neighbors = current.getNeighbors();
@@ -118,7 +125,7 @@ public class AStarSearch {
 		for (int i = 0; i < result.size() - 1; i++) {
 			MapNode m1 = result.get(i);
 			MapNode m2 = result.get(i + 1);
-			d += haversineFormula(m1.getlat(), m1.getlon(), m2.getlat(), m2.getlon());
+			d += m1.neighborToRoad.get(m2).getLength();
 		}
 		return d;
 	}
@@ -128,26 +135,10 @@ public class AStarSearch {
 		for (int i = 0; i < result.size() - 1; i++) {
 			MapNode m1 = result.get(i);
 			MapNode m2 = result.get(i + 1);
-			double d = haversineFormula(m1.getlat(), m1.getlon(), m2.getlat(), m2.getlon());
-			double r = m1.neighborToRoad.get(m2).getMPH();
-			t += (d / r);
+			t += m1.neighborToRoad.get(m2).getTime();
+
 		}
 		return t;
-	}
-
-	private int haversineFormula(double lat1, double lon1, double lat2, double lon2) {
-		int R = 6371000;
-		double phi1 = lat1 * Math.PI / 180;
-		double phi2 = lat2 * Math.PI / 180;
-		double deltaPhi = (lat2 - lat1) * Math.PI / 180;
-		double deltaLambda = (lon2 - lon1) * Math.PI / 180;
-		double a = Math.sin(deltaPhi / 2) * Math.sin(deltaPhi / 2)
-				+ Math.cos(phi1) * Math.cos(phi2) * Math.sin(deltaLambda / 2) * Math.sin(deltaLambda / 2);
-		double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-		double d = R * c;
-		int miles = (int) Math.round(d / 1609.34);
-		return miles;
-
 	}
 
 	private LinkedList<MapNode> createPath(MapNode startNode, MapNode goalNode, HashMap<MapNode, MapNode> parents) {
@@ -184,7 +175,7 @@ public class AStarSearch {
 		}
 		return distances;
 	}
-	
+
 	private HashMap<MapNode, Double> initTime() {
 		HashMap<MapNode, Double> times = new HashMap<MapNode, Double>();
 		Iterator<MapNode> iter = currentMap.values().iterator();
@@ -194,5 +185,49 @@ public class AStarSearch {
 		}
 		return times;
 	}
-	
+
+	public ArrayList<LinkedList<MapNode>> tripPlannerTime(String start, double time) {
+		ArrayList<LinkedList<MapNode>> results = new ArrayList<LinkedList<MapNode>>();
+		MapNode st = currentMap.get(start);
+		ArrayList<MapNode> previous = new ArrayList<MapNode>();
+		for (int i = 0; i < 3; i++) {
+			LinkedList<MapNode> result = new LinkedList<MapNode>();
+			for (MapNode mp : currentMap.values()) {
+				if (st != mp) {
+					result = searchTime(st, mp);
+					if(!previous.contains(mp)) {
+						if(getFinalTime(result) > (time - time * 0.2) && getFinalTime(result) < (time + time * 0.2)) {
+							previous.add(mp);
+							results.add(result);
+							break;
+						}
+					}
+				}
+			}
+		}
+		return results;
+	}
+
+	public ArrayList<LinkedList<MapNode>> tripPlannerDistance(String start, int miles) {
+		ArrayList<LinkedList<MapNode>> results = new ArrayList<LinkedList<MapNode>>();
+		MapNode st = currentMap.get(start);
+		ArrayList<MapNode> previous = new ArrayList<MapNode>();
+		for (int i = 0; i < 3; i++) {
+			LinkedList<MapNode> result = new LinkedList<MapNode>();
+			for (MapNode mp : currentMap.values()) {
+				if (st != mp) {
+					result = search(st, mp);
+					if(!previous.contains(mp)) {
+						if(getFinalDist(result) > (miles - (miles * 0.2)) && getFinalDist(result) < (miles + (miles * 0.2))) {
+							previous.add(mp);
+							results.add(result);
+							break;
+						}
+					}
+				}
+			}
+		}
+		return results;
+	}
+
 }

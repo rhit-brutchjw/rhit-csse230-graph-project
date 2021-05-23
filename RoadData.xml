@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<RoadPath xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<record>
+		<to>McCormick's Creek</to>
+		<from>Turkey Run</from>
+		<MPH>48.62</MPH>
+		<length>62</length>
+	</record>
+	<record>
+		<to>McCormick's Creek</to>
+		<from>Brown County</from>
+		<MPH>45.32</MPH>
+		<length>35</length>
+	</record>
+	<record>
+		<to>McCormick's Creek</to>
+		<from>Fort Harrison</from>
+		<MPH>46.79</MPH>
+		<length>46</length>
+	</record>
+	<record>
+		<to>McCormick's Creek</to>
+		<from>White River</from>
+		<MPH>55.38</MPH>
+		<length>60</length>
+	</record>
+	<record>
+		<to>McCormick's Creek</to>
+		<from>Spring Mill</from>
+		<MPH>52.94</MPH>
+		<length>50</length>
+	</record>
+	<record>
+		<to>McCormick's Creek</to>
+		<from>Shakamak</from>
+		<MPH>50.23</MPH>
+		<length>36</length>
+	</record>
+	<record>
+		<to>McCormick's Creek</to>
+		<from>Shades</from>
+		<MPH>48.24</MPH>
+		<length>59</length>
+	</record>
+	<record>
+		<to>Harmonie</to>
+		<from>Lincoln</from>
+		<MPH>65.81</MPH>
+		<length>69</length>
+	</record>
+	<record>
+		<to>Tippecanoe Rier</to>
+		<from>Prophetstown</from>
+		<MPH>50.22</MPH>
+		<length>61</length>
+	</record>
+	<record>
+		<to>Tippecanoe Rier</to>
+		<from>Potato Creek</from>
+		<MPH>50.7</MPH>
+		<length>43</length>
+	</record>
+	<record>
+		<to>Tippecanoe Rier</to>
+		<from>Indiana Dunes</from>
+		<MPH>54.96</MPH>
+		<length>57</length>
+	</record>
+	<record>
+		<to>Brown County</to>
+		<from>Fort Harrison</from>
+		<MPH>58.43</MPH>
+		<length>67</length>
+	</record>
+	<record>
+		<to>Brown County</to>
+		<from>White River</from>
+		<MPH>57.48</MPH>
+		<length>59</length>
+	</record>
+	<record>
+		<to>Brown County</to>
+		<from>Spring Mill</from>
+		<MPH>47.36</MPH>
+		<length>59</length>
+	</record>
+	<record>
+		<to>Brown County</to>
+		<from>Shakamak</from>
+		<MPH>46.73</MPH>
+		<length>74</length>
+	</record>
+	<record>
+		<to>Brown County</to>
+		<from>Falls of the Ohio</from>
+		<MPH>62.32</MPH>
+		<length>83</length>
+	</record>
+	<record>
+		<to>Brown County</to>
+		<from>O'Bannon Woods</from>
+		<MPH>61.65</MPH>
+		<length>112</length>
+	</record>
+	<record>
+		<to>Brown County</to>
+		<from>Clifty Falls</from>
+		<MPH>55.57</MPH>
+		<length>74</length>
+	</record>
+	<record>
+		<to>Brown County</to>
+		<from>Charlestown</from>
+		<MPH>57.18</MPH>
+		<length>75</length>
+	</record>
+	<record>
+		<to>Ouabache</to>
+		<from>Pokagon</from>
+		<MPH>55.84</MPH>
+		<length>82</length>
+	</record>
+	<record>
+		<to>Ouabache</to>
+		<from>Summit Lake</from>
+		<MPH>43.6</MPH>
+		<length>82</length>
+	</record>
+	<record>
+		<to>Ouabache</to>
+		<from>Mounds</from>
+		<MPH>52.05</MPH>
+		<length>69</length>
+	</record>
+	<record>
+		<to>Ouabache</to>
+		<from>Chain O'Lakes</from>
+		<MPH>43.71</MPH>
+		<length>56</length>
+	</record>
+	<record>
+		<to>Shades</to>
+		<from>Turkey Run</from>
+		<MPH>40.49</MPH>
+		<length>11</length>
+	</record>
+	<record>
+		<to>Shades</to>
+		<from>Prophetstown</from>
+		<MPH>45.36</MPH>
+		<length>50</length>
+	</record>
+	<record>
+		<to>Shades</to>
+		<from>White River</from>
+		<MPH>47.23</MPH>
+		<length>56</length>
+	</record>
+	<record>
+		<to>Shades</to>
+		<from>Shakamak</from>
+		<MPH>45.34</MPH>
+		<length>66</length>
+	</record>
+	<record>
+		<to>Mounds</to>
+		<from>Summit Lake</from>
+		<MPH>43.41</MPH>
+		<length>25</length>
+	</record>
+	<record>
+		<to>Mounds</to>
+		<from>Whitewater Memorial</from>
+		<MPH>49.24</MPH>
+		<length>71</length>
+	</record>
+	<record>
+		<to>Mounds</to>
+		<from>Fort Harrison</from>
+		<MPH>45.65</MPH>
+		<length>31</length>
+	</record>
+	<record>
+		<to>Mounds</to>
+		<from>White River</from>
+		<MPH>54.46</MPH>
+		<length>47</length>
+	</record>
+	<record>
+		<to>Shakamak</to>
+		<from>Turkey Run</from>
+		<MPH>48.67</MPH>
+		<length>65</length>
+	</record>
+	<record>
+		<to>Shakamak</to>
+		<from>Spring Mill</from>
+		<MPH>48.34</MPH>
+		<length>70</length>
+	</record>
+	<record>
+		<to>Indiana Dunes</to>
+		<from>Potato Creek</from>
+		<MPH>48.87</MPH>
+		<length>49</length>
+	</record>
+	<record>
+		<to>Clifty Falls</to>
+		<from>Whitewater Memorial</from>
+		<MPH>48.11</MPH>
+		<length>85</length>
+	</record>
+	<record>
+		<to>Clifty Falls</to>
+		<from>Falls of the Ohio</from>
+		<MPH>51.16</MPH>
+		<length>45</length>
+	</record>
+	<record>
+		<to>Clifty Falls</to>
+		<from>Versailles</from>
+		<MPH>48.66</MPH>
+		<length>29</length>
+	</record>
+	<record>
+		<to>Clifty Falls</to>
+		<from>Charlestown</from>
+		<MPH>54.41</MPH>
+		<length>26</length>
+	</record>
+	<record>
+		<to>Falls of the Ohio</to>
+		<from>Spring Mill</from>
+		<MPH>49.79</MPH>
+		<length>55</length>
+	</record>
+	<record>
+		<to>Falls of the Ohio</to>
+		<from>Versailles</from>
+		<MPH>50.2</MPH>
+		<length>73</length>
+	</record>
+	<record>
+		<to>Falls of the Ohio</to>
+		<from>O'Bannon Woods</from>
+		<MPH>54.58</MPH>
+		<length>37</length>
+	</record>
+	<record>
+		<to>Falls of the Ohio</to>
+		<from>Charlestown</from>
+		<MPH>45.78</MPH>
+		<length>15</length>
+	</record>
+	<record>
+		<to>White River</to>
+		<from>Summit Lake</from>
+		<MPH>54.36</MPH>
+		<length>59</length>
+	</record>
+	<record>
+		<to>White River</to>
+		<from>Prophetstown</from>
+		<MPH>59.15</MPH>
+		<length>70</length>
+	</record>
+	<record>
+		<to>White River</to>
+		<from>Fort Harrison</from>
+		<MPH>39.81</MPH>
+		<length>15</length>
+	</record>
+	<record>
+		<to>Charlestown</to>
+		<from>Spring Mill</from>
+		<MPH>42.67</MPH>
+		<length>50</length>
+	</record>
+	<record>
+		<to>Charlestown</to>
+		<from>Versailles</from>
+		<MPH>50.43</MPH>
+		<length>54</length>
+	</record>
+	<record>
+		<to>Charlestown</to>
+		<from>O'Bannon Woods</from>
+		<MPH>55.14</MPH>
+		<length>43</length>
+	</record>
+	<record>
+		<to>Lincoln</to>
+		<from>Spring Mill</from>
+		<MPH>53.37</MPH>
+		<length>77</length>
+	</record>
+	<record>
+		<to>Lincoln</to>
+		<from>O'Bannon Woods</from>
+		<MPH>57.25</MPH>
+		<length>56</length>
+	</record>
+	<record>
+		<to>Pokagon</to>
+		<from>Chain O'Lakes</from>
+		<MPH>54.97</MPH>
+		<length>45</length>
+	</record>
+	<record>
+		<to>Prophetstown</to>
+		<from>Turkey Run</from>
+		<MPH>48.24</MPH>
+		<length>59</length>
+	</record>
+	<record>
+		<to>Summit Lake</to>
+		<from>Whitewater Memorial</from>
+		<MPH>45.33</MPH>
+		<length>48</length>
+	</record>
+	<record>
+		<to>Summit Lake</to>
+		<from>Fort Harrison</from>
+		<MPH>47.54</MPH>
+		<length>42</length>
+	</record>
+	<record>
+		<to>Summit Lake</to>
+		<from>Versailles</from>
+		<MPH>46.82</MPH>
+		<length>80</length>
+	</record>
+	<record>
+		<to>O'Bannon Woods</to>
+		<from>Spring Mill</from>
+		<MPH>43.14</MPH>
+		<length>49</length>
+	</record>
+	<record>
+		<to>Chain O'Lakes</to>
+		<from>Potato Creek</from>
+		<MPH>47.84</MPH>
+		<length>61</length>
+	</record>
+	<record>
+		<to>Whitewater Memorial</to>
+		<from>Versailles</from>
+		<MPH>48.52</MPH>
+		<length>56</length>
+	</record>
+</RoadPath>
