@@ -3,6 +3,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 
@@ -12,6 +13,7 @@ public class MapComponent extends JComponent {
 	public Loader load;
 	HashMap<String, MapNode> map;
 	LinkedList<MapNode> path;
+	ArrayList<LinkedList<MapNode>> goal;
 
 	public MapComponent(Loader load) {
 		super();
@@ -27,8 +29,12 @@ public class MapComponent extends JComponent {
 		Graphics2D g2 = (Graphics2D) g;
 
 		doDrawing(g2);
-		if (path != null) {
+		if (goal == null && path != null) {
 			doLine(g2, path);
+		}else if(path == null && goal != null) {
+			for (int i = 0; i< goal.size(); i++) {
+				doLine(g2, goal.get(i));
+			}
 		}
 	}
 
@@ -68,6 +74,12 @@ public class MapComponent extends JComponent {
 	public void setResult(LinkedList<MapNode> result) {
 		this.path = result;
 
+	}
+	
+
+	public void setGoal(ArrayList<LinkedList<MapNode>> topThree) {
+		this.goal = topThree;
+		
 	}
 
 }
